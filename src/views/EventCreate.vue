@@ -3,6 +3,7 @@
     <h1>Create Event</h1>
     <p>Name: {{ user.name }}</p>
     <p>Id: {{ user.id }}</p>
+    <p>Local Prop: {{ localComputed.aaa }}</p>
     <h3>Categories</h3>
     <ul>
       <li v-for="category in categories" :key="category">
@@ -17,7 +18,12 @@
   import { mapState } from 'vuex'
 
   export default {
-    computed: mapState(['user','categories'])
+    computed: {
+      localComputed() {
+        return {aaa: 'something'}
+      },
+      ...mapState(['user','categories'])
+    }
   }
 </script>
 
