@@ -7,10 +7,22 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue'
+import axios from 'axios';
 
 export default {
   components: {
     EventCard
+  },
+  created() {
+    axios
+    .get('http://localhost:3000/events')
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
   }
 }
 </script>
