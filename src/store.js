@@ -14,8 +14,28 @@ export default new Vuex.Store({
       'education', 
       'food', 
       'community'
+    ],
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '...', done: false },
+      { id: 3, text: '...', done: true },
+      { id: 4, text: '...', done: false }
     ]
   },
   mutations: {},
-  actions: {}
+  actions: {},
+  getters: {
+    catLength: state => {
+      return state.categories.length;
+    },
+    doneToDos: state => {
+      return state.todos.filter( todo => { return todo.done })
+    },
+    // activeToDosCount: (state, getters) => {
+    //   return state.todos.length - getters.doneToDos.length
+    // },
+    activeToDosCount: state => {
+      return state.todos.filter( todo => { return !todo.done }).length
+    }
+  }
 })
