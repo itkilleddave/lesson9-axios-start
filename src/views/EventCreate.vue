@@ -7,6 +7,7 @@
     <h3>Categories ({{ catLength }})</h3>
     <p>Done ToDos: {{ doneToDos }}</p>
     <p>Active ToDos Count: {{ activeToDosCount }}</p>
+    <!-- <p>{{ eventById(1) }}</p> -->
     <ul>
       <li v-for="category in categories" :key="category">
         {{ category }}
@@ -17,22 +18,26 @@
 
 <script>
 
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
 
   export default {
     computed: {
+      // getEvent() {
+      //   return this.$store.getters.eventById
+      // },
+      // catLength() {
+      //   return this.$store.getters.catLength
+      // },
+      // doneToDos() {
+      //   return this.$store.getters.doneToDos
+      // },
+      // activeToDosCount() {
+      //   return this.$store.getters.activeToDosCount
+      // },
       localComputed() {
         return {aaa: 'something'}
       },
-      catLength() {
-        return this.$store.getters.catLength
-      },
-      doneToDos() {
-        return this.$store.getters.doneToDos
-      },
-      activeToDosCount() {
-        return this.$store.getters.activeToDosCount
-      },
+      ...mapGetters(['catLength', 'doneToDos', 'activeToDosCount']),
       ...mapState(['user','categories'])
     }
   }
